@@ -127,4 +127,12 @@
     cursor: pointer;
   }
 }
+html, body, #__next {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
 

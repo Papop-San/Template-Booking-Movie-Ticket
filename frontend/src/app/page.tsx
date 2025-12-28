@@ -1,32 +1,88 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import Img1 from "../../public/img/The Matrix Resurrections.png";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import Link from "next/link";
+
+
+const movies = Array.from({ length: 8 }).map((_, index) => ({
+  id: index+1,
+  title: "The Matrix Resurrections",
+  date: "12 Nov 2025",
+  image: Img1,
+}));
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-zinc-50 dark:bg-black">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle className="text-center text-2xl">
-            Fullstack Template
-          </CardTitle>
-        </CardHeader>
-
-        <CardContent className="flex flex-col gap-6">
-          <p className="text-center text-zinc-600 dark:text-zinc-400">
-            Starter template using Next.js, TypeScript and shadcn/ui
+    <main className="min-h-screen w-full bg-white p-20">
+      <div className="flex flex-col items-start w-full">
+        <div className="mb-8 ml-12">
+          <h1 className="text-xl font-bold text-[#333333]">
+            Now Showing
+          </h1>
+          <p className="font-normal text-[#414A63]">
+            Experience it now at your favorite cinema!
           </p>
+        </div>
 
-          <div className="flex flex-col gap-3">
-            <Button className="w-full">
-              Get Started
-            </Button>
+        <div className="grid grid-cols-4 gap-x-8 gap-y-12 self-center">
+          {movies.map((movie) => (
+            <Link
+              key={movie.id}
+              href={`/movies/${movie.id}`}
+              className="block"
+            >
+              <Card
+                className="
+                  group
+                  border-none
+                  shadow-none
+                  bg-transparent
+                  overflow-hidden
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                "
+              >
+                <CardContent className="p-0">
+                  <div className="overflow-hidden rounded-lg">
+                    <Image
+                      src={movie.image}
+                      alt={movie.title}
+                      width={300}
+                      height={450}
+                      className="
+                        w-full
+                        h-auto
+                        object-cover
+                        transition-transform
+                        duration-300
+                        group-hover:scale-105
+                      "
+                    />
+                  </div>
+                </CardContent>
 
-            <Button variant="outline" className="w-full">
-              Documentation
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+                <CardFooter className="flex flex-col items-start p-0 mt-4 transition-colors duration-300">
+                  <p className="text-[#414A63] text-sm group-hover:text-[#2c365a]">
+                    {movie.date}
+                  </p>
+                  <p className="font-bold text-[#333333] text-lg leading-tight group-hover:text-black">
+                    {movie.title}
+                  </p>
+                </CardFooter>
+              </Card>
+            </Link>
+          ))}
+
+
+
+        </div>
+      </div>
     </main>
   );
 }
