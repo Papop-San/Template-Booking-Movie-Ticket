@@ -1,9 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { House, UserStar } from "lucide-react"
+import { House, Ticket, Balloon } from "lucide-react";
 import Image from "next/image";
-
-
 
 export function Navbar() {
   return (
@@ -11,16 +9,11 @@ export function Navbar() {
       <div className="mx-auto flex h-20  items-center justify-between px-6">
         {/* Left */}
         <Link href="/" className="text-sm font-semibold">
-          <Image
-            src="/logo.svg"
-            alt="Logo"
-            width={80}
-            height={80}
-          />
+          <Image src="/logo.svg" alt="Logo" width={80} height={80} />
         </Link>
 
         {/* Right */}
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-4">
           <Button asChild variant="ghost" size="lg">
             <Link href="/">
               <House />
@@ -28,12 +21,11 @@ export function Navbar() {
             </Link>
           </Button>
 
-          <Button asChild   variant="ghost" size="lg">
-            <Link href="/admin">
-              <UserStar />
-              Admin
+          <Button asChild variant="ghost" size="lg">
+            <Link href="/booking">
+              <Ticket />
+              Booking List
             </Link>
-
           </Button>
         </div>
       </div>
