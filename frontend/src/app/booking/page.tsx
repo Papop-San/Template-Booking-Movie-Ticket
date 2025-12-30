@@ -24,20 +24,29 @@ export default function TablePage() {
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   // Fetch bookings
-  const fetchBookings = async () => {
-    try {
-      setLoading(true);
-      const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACK}/bookings/admin`);
-      if (!res.ok) throw new Error("Failed to fetch bookings");
-      const data = await res.json();
-      setEventBookings(data);
-      if (data.length > 0) setActiveTab(data[0].event_name);
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
+ const fetchBookings = async () => {
+  try {
+    setLoading(true);
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_URL_BACK}/bookings/admin`
+    );
+    if (!res.ok) throw new Error("Failed to fetch bookings");
+
+    const json = await res.json();
+
+    const events = Array.isArray(json) ? json : json.data;
+
+    setEventBookings(events);
+
+    if (events.length > 0) {
+      setActiveTab(events[0].event_name);
     }
-  };
+  } catch (err: any) {
+    setError(err.message);
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     fetchBookings();

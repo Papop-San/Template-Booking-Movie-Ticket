@@ -52,24 +52,24 @@ export default function Home() {
         </div>
 
         {/* 🔄 Loading */}
-        {loading && (
-          <div className="grid grid-cols-4 gap-x-8 gap-y-12 self-center mt-10">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <Card
-                key={i}
-                className="border-none bg-white rounded-lg p-4 shadow-md"
-              >
-                <CardContent className="flex flex-col items-center">
-                  <Skeleton className="w-40 h-40 rounded-lg" />
-                  <Skeleton className="mt-4 h-4 w-3/4" />
-                </CardContent>
-                <CardFooter className="flex justify-center">
-                  <Skeleton className="h-3 w-1/2" />
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
-        )}
+          {loading && (
+            <div className="grid grid-cols-4 gap-x-8 gap-y-12 self-center mt-10">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <Card
+                  key={i}
+                  className="border-none bg-white rounded-lg p-4 shadow-md"
+                >
+                  <CardContent className="flex flex-col items-center">
+                    <Skeleton className="w-40 h-40 rounded-lg" />
+                    <Skeleton className="mt-4 h-4 w-3/4" />
+                  </CardContent>
+                  <CardFooter className="flex justify-center">
+                    <Skeleton className="h-3 w-1/2" />
+                  </CardFooter>
+                </Card>
+              ))}
+            </div>
+          )}
 
         {/* ❌ Error */}
         {error && !loading && (
@@ -80,7 +80,7 @@ export default function Home() {
 
         {/* ✅ Data */}
         {!loading && !error && (
-          <div className="grid grid-cols-4 gap-x-8 gap-y-12 self-center mt-10">
+          <div className="grid grid-cols-4 gap-x-8 gap-y-12 self-center  mt-10">
             {events.map((event) => (
               <Link
                 key={event.id}
